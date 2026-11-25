@@ -1,475 +1,187 @@
-/* ============================================================
-   agilizIA – script.js
-   Funcionalidades: tema, menu, animações, chat demo, form
-   ============================================================ */
+(() => {
+  const CONTACT_EMAIL = 'ia.agiliza@gmail.com';
+  const H0 = 8, H1 = 18, SPAN = H1 - H0;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
+  const chat = $('#chat'), cols = [...document.querySelectorAll('.col')], log = $('#log'), sync = $('#sync'), syncText = $('#sync-text');
 
-'use strict';
+  // Horas da grade
+  const hours = $('#hours');
+  for (let h = H0 + 1; h < H1; h++) { const s = document.createElement('span'); s.style.top = ((h - H0) / SPAN * 100) + '%'; s.textContent = h + 'h'; hours.appendChild(s); }
 
-// ── UTILITÁRIOS ──────────────────────────────────────────────
-const $ = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
-
-// ── TEMA (DARK / LIGHT) ──────────────────────────────────────
-const ThemeManager = (() => {
-  const html   = document.documentElement;
-  const btn    = $('#theme-toggle');
-  const DARK   = 'dark';
-  const LIGHT  = 'light';
-  const KEY    = 'agilizIA-theme';
-
-  function apply(theme) {
-    html.setAttribute('data-theme', theme);
-    const isDark = theme === DARK;
-    btn.setAttribute('aria-pressed', String(!isDark));
-    btn.setAttribute('aria-label', isDark ? 'Alternar para modo claro' : 'Alternar para modo escuro');
-    localStorage.setItem(KEY, theme);
-  }
-
-  function toggle() {
-    const current = html.getAttribute('data-theme');
-    apply(current === DARK ? LIGHT : DARK);
-  }
-
-  function init() {
-    const saved  = localStorage.getItem(KEY);
-    const system = window.matchMedia('(prefers-color-scheme: light)').matches ? LIGHT : DARK;
-    apply(saved || system);
-    btn.addEventListener('click', toggle);
-  }
-
-  return { init };
-})();
-
-// ── MENU MOBILE ──────────────────────────────────────────────
-const MenuManager = (() => {
-  const menuBtn  = $('#menu-toggle');
-  const mobileMenu = $('#mobile-menu');
-  const links    = $$('.mobile-menu__link');
-
-  function open() {
-    menuBtn.setAttribute('aria-expanded', 'true');
-    menuBtn.setAttribute('aria-label', 'Fechar menu de navegação');
-    mobileMenu.setAttribute('aria-hidden', 'false');
-  }
-
-  function close() {
-    menuBtn.setAttribute('aria-expanded', 'false');
-    menuBtn.setAttribute('aria-label', 'Abrir menu de navegação');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-  }
-
-  function init() {
-    menuBtn.addEventListener('click', () => {
-      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-      expanded ? close() : open();
-    });
-
-    links.forEach(link => link.addEventListener('click', close));
-
-    // Close on outside click
-    document.addEventListener('click', e => {
-      if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) close();
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') close();
-    });
-  }
-
-  return { init };
-})();
-
-// ── HEADER SCROLL ────────────────────────────────────────────
-const HeaderScroll = (() => {
-  const header = $('.site-header');
-
-  function init() {
-    const update = () => {
-      if (window.scrollY > 20) {
-        header.style.boxShadow = '0 2px 30px rgba(0,0,0,.3)';
-      } else {
-        header.style.boxShadow = '';
-      }
-    };
-    window.addEventListener('scroll', update, { passive: true });
-  }
-
-  return { init };
-})();
-
-// ── PARTICLES (HERO) ─────────────────────────────────────────
-const Particles = (() => {
-  const container = $('#particles');
-
-  function create() {
-    if (!container) return;
-    const count = window.innerWidth < 600 ? 12 : 24;
-
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-
-      const size  = Math.random() * 3 + 1;
-      const left  = Math.random() * 100;
-      const delay = Math.random() * 12;
-      const dur   = Math.random() * 10 + 8;
-      const opacity = Math.random() * 0.4 + 0.1;
-
-      p.style.cssText = `
-        width: ${size}px; height: ${size}px;
-        left: ${left}%; bottom: -10px;
-        animation-duration: ${dur}s;
-        animation-delay: ${delay}s;
-        opacity: ${opacity};
-      `;
-
-      // Alternate colors
-      if (i % 3 === 1) p.style.background = 'var(--clr-neon)';
-      if (i % 3 === 2) p.style.background = 'var(--clr-cyan)';
-
-      container.appendChild(p);
-    }
-  }
-
-  return { init: create };
-})();
-
-// ── COUNTER ANIMATION ────────────────────────────────────────
-const CounterAnimation = (() => {
-  const stats = $$('.stat__number');
-  let started = false;
-
-  function animateCounter(el) {
-    const target  = parseInt(el.getAttribute('data-target'), 10);
-    const dur     = 1800;
-    const step    = 16;
-    const steps   = dur / step;
-    const increment = target / steps;
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current = Math.min(current + increment, target);
-      el.textContent = Math.floor(current);
-      if (current >= target) clearInterval(timer);
-    }, step);
-  }
-
-  function init() {
-    if (!stats.length) return;
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !started) {
-          started = true;
-          stats.forEach(el => animateCounter(el));
-        }
-      });
-    }, { threshold: 0.4 });
-
-    const statsContainer = $('.hero__stats');
-    if (statsContainer) observer.observe(statsContainer);
-  }
-
-  return { init };
-})();
-
-// ── SCROLL REVEAL ────────────────────────────────────────────
-const ScrollReveal = (() => {
-  function addRevealClasses() {
-    const sections = $$('section:not(.hero)');
-    sections.forEach(section => {
-      const children = $$(':scope > .container > *', section);
-      children.forEach((child, i) => {
-        child.classList.add('reveal');
-        child.style.transitionDelay = `${i * 0.08}s`;
-      });
-    });
-  }
-
-  function observe() {
-    const items = $$('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    items.forEach(el => observer.observe(el));
-  }
-
-  function init() {
-    addRevealClasses();
-    // Small delay to avoid flash
-    requestAnimationFrame(() => requestAnimationFrame(observe));
-  }
-
-  return { init };
-})();
-
-// ── CHAT DEMO ────────────────────────────────────────────────
-const ChatDemo = (() => {
-  const chatBody = $('#chat-body');
-  if (!chatBody) return { init: () => {} };
-
-  const conversation = [
-    { type: 'bot',  text: '👋 Olá! Sou a assistente virtual da <strong>Clínica Saúde+</strong>. Posso ajudar com agendamentos, dúvidas ou informações. Como posso te ajudar hoje?' },
-    { type: 'user', text: 'Oi! Quero agendar uma consulta com o Dr. Carlos.' },
-    { type: 'bot',  text: 'Claro! O Dr. Carlos tem disponibilidade nos seguintes horários:<br><br>📅 <strong>Segunda-feira, 24/03</strong> — 10h ou 14h30<br>📅 <strong>Quarta-feira, 26/03</strong> — 09h ou 16h<br><br>Qual prefere?' },
-    { type: 'user', text: 'Segunda às 14h30 está ótimo!' },
-    { type: 'bot',  text: '✅ <strong>Agendamento confirmado!</strong><br><br>📅 Segunda, 24/03 às 14h30<br>👨‍⚕️ Dr. Carlos — Clínica Geral<br><br>Você receberá uma confirmação e um lembrete 1h antes. Posso ajudar com mais alguma coisa?' },
-    { type: 'user', text: 'Não, obrigado! Muito fácil!' },
-    { type: 'bot',  text: '😊 Fico feliz em ajudar! Qualquer dúvida, estou por aqui. Até segunda! 👋' },
+  // Agenda base (dia 0 = qua, 1 = qui, 2 = sex)
+  const BASE = [
+    { id: 'a1', d: 0, s: 8.5, e: 9.5, t: 'Pedro A.', k: 'Avaliação' },
+    { id: 'a2', d: 0, s: 10, e: 11.5, t: 'Helena M.', k: 'Canal' },
+    { id: 'a3', d: 0, s: 12, e: 13, t: 'Almoço', block: 1 },
+    { id: 'a4', d: 0, s: 14, e: 15, t: 'Otávio R.', k: 'Limpeza' },
+    { id: 'a5', d: 0, s: 15.5, e: 17, t: 'Bloqueado', block: 1 },
+    { id: 'b1', d: 1, s: 8, e: 9, t: 'João P.', k: 'Restauração' },
+    { id: 'b2', d: 1, s: 9, e: 10, t: 'Lúcia F.', k: 'Avaliação' },
+    { id: 'b3', d: 1, s: 11, e: 12, t: 'Carla S.', k: 'Canal' },
+    { id: 'b4', d: 1, s: 12, e: 13, t: 'Almoço', block: 1 },
+    { id: 'b5', d: 1, s: 13, e: 14, t: 'Rafael T.', k: 'Clareamento' },
+    { id: 'b6', d: 1, s: 15, e: 16.5, t: 'Bruna C.', k: 'Implante' },
+    { id: 'c1', d: 2, s: 8, e: 9, t: 'Tiago L.', k: 'Avaliação' },
+    { id: 'c2', d: 2, s: 10, e: 12, t: 'Paula N.', k: 'Prótese' },
+    { id: 'c3', d: 2, s: 12, e: 13, t: 'Almoço', block: 1 },
+    { id: 'c4', d: 2, s: 13, e: 14, t: 'Diego V.', k: 'Limpeza' },
+    { id: 'c5', d: 2, s: 14, e: 15, t: 'Fernanda B.', k: 'Avaliação' },
+    { id: 'c6', d: 2, s: 16, e: 17, t: 'Sônia G.', k: 'Restauração' },
   ];
-
-  let index = 0;
-  let running = false;
-
-  function getTime() {
-    const d = new Date();
-    return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-  }
-
-  function addTyping() {
+  const fmt = h => { const m = Math.round((h % 1) * 60); return Math.floor(h) + 'h' + (m ? String(m).padStart(2, '0') : ''); };
+  const pos = (el, s, e) => { el.style.top = ((s - H0) / SPAN * 100) + '%'; el.style.height = `calc(${(e - s) / SPAN * 100}% - 2px)`; };
+  const evEls = {};
+  function drawEv(ev, enter) {
     const el = document.createElement('div');
-    el.className = 'msg msg--bot';
-    el.id = 'typing';
-    el.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
-    chatBody.appendChild(el);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    el.className = 'ev' + (ev.block ? ' block' : '') + (ev.mine ? ' mine' : '') + (ev.ok ? ' confirmed' : '') + (enter ? ' enter' : '');
+    el.innerHTML = `<b>${ev.t}</b><small>${fmt(ev.s)}–${fmt(ev.e)}${ev.k ? ' · ' + ev.k : ''}</small>` + (ev.mine ? `<span class="tag">${ev.ok ? 'Confirmado' : 'Pelo WhatsApp'}</span>` : '');
+    pos(el, ev.s, ev.e);
+    cols[ev.d].appendChild(el); evEls[ev.id] = el;
+    if (enter) requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('enter')));
     return el;
   }
-
-  function removeTyping() {
-    const t = $('#typing');
-    if (t) t.remove();
+  function clearOverlays() { document.querySelectorAll('.slot, .ghost').forEach(n => n.remove()); }
+  function resetCal(state) {
+    cols.forEach(c => c.innerHTML = ''); for (const k in evEls) delete evEls[k];
+    BASE.forEach(ev => drawEv(ev));
+    if (state) drawEv(state);
   }
+  // Estado da consulta da Marina antes de cada cena
+  const MARINA = { id: 'm', t: 'Marina C.', k: 'Limpeza', mine: 1 };
+  const before = [
+    null,
+    { ...MARINA, d: 1, s: 14, e: 15 },
+    { ...MARINA, d: 2, s: 15, e: 16 },
+    { ...MARINA, d: 2, s: 15, e: 16, ok: 1 },
+    { ...MARINA, d: 2, s: 15, e: 16, ok: 1 },
+    null,
+  ];
 
-  function addMessage(msg, delay) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        removeTyping();
-
-        const el = document.createElement('div');
-        el.className = `msg msg--${msg.type}`;
-        el.style.animationDelay = '0s';
-        el.innerHTML = `
-          <div class="msg__bubble">${msg.text}</div>
-          <div class="msg__time">${getTime()}</div>
-        `;
-        chatBody.appendChild(el);
-        chatBody.scrollTop = chatBody.scrollHeight;
-        resolve();
-      }, delay);
-    });
+  // Motor
+  let run = 0, paused = false, current = 0;
+  const sleep = ms => new Promise((res, rej) => { const my = run; const step = () => { if (my !== run) return rej('x'); if (paused) return setTimeout(step, 150); ms -= 50; if (ms <= 0) res(); else setTimeout(step, 50); }; step(); });
+  const now = () => '14:' + String(10 + Math.floor(Math.random() * 40)).padStart(2, '0');
+  function bubble(cls, html) { const m = document.createElement('div'); m.className = 'msg ' + cls; m.innerHTML = html + (cls === 'sys' ? '' : `<span class="t">${now()}</span>`); chat.appendChild(m); trim(); return m; }
+  function trim() { while (chat.scrollHeight > chat.clientHeight + 4 && chat.children.length > 2) chat.removeChild(chat.children[0]); }
+  async function pac(text) { await sleep(reduce ? 100 : 700 + text.length * 18); bubble('out', text); }
+  async function bot(text, note) {
+    await sleep(reduce ? 50 : 500);
+    const t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>'; chat.appendChild(t); trim(); $('#wa-status').textContent = 'digitando...';
+    try { await sleep(reduce ? 100 : 900 + Math.min(text.length * 14, 1400)); } finally { t.remove(); $('#wa-status').textContent = 'online'; }
+    bubble('in', (note ? `<span class="note">${note}</span>` : '') + text);
   }
+  function busy(on, text) { sync.classList.toggle('on', on); syncText.textContent = on ? (text || 'Atualizando...') : 'Sincronizado'; }
+  function say(html) { log.innerHTML = html; }
+  function slots(d, list) { return list.map(([s, e]) => { const el = document.createElement('div'); el.className = 'slot'; pos(el, s, e); el.textContent = 'livre'; cols[d].appendChild(el); return el; }); }
+  async function calStep(fn, text) { busy(true, text); await sleep(reduce ? 50 : 700); fn(); busy(false); }
 
-  async function playConversation() {
-    if (running || index >= conversation.length) return;
-    running = true;
+  const scenes = [
+    async () => { // Marcar
+      day('Hoje');
+      await pac('Oi! Queria marcar uma limpeza com a Dra. Ana essa semana');
+      busy(true, 'Consultando horários...'); say('Consultando a agenda da <b>Dra. Ana</b> na quinta...');
+      await sleep(900); const sl = slots(1, [[10, 11], [14, 15], [16.5, 17.5]]); busy(false);
+      say('<b>3 horários livres</b> encontrados na quinta.');
+      await bot('Oi, Marina! A Dra. Ana tem horário na quinta (3/12) às <b>10h</b>, <b>14h</b> ou <b>16h30</b>. Qual fica melhor?');
+      await pac('14h');
+      sl[1].classList.add('chosen'); sl[1].textContent = 'reservando';
+      await calStep(() => { clearOverlays(); drawEv({ ...MARINA, d: 1, s: 14, e: 15 }, true); }, 'Criando evento...');
+      say('Evento criado: <b>Marina C. · Limpeza</b>, qui 3/12, 14h–15h.');
+      await bot('Pronto! Limpeza com a Dra. Ana marcada para <b>quinta, 3/12, às 14h</b>. Te mando um lembrete na véspera 😉');
+    },
+    async () => { // Remarcar
+      day('Hoje');
+      await pac('Oi, surgiu um imprevisto. Dá pra passar minha consulta de quinta pra sexta?');
+      busy(true, 'Consultando horários...'); say('Procurando horários livres na <b>sexta</b>...');
+      await sleep(900); slots(2, [[9, 10], [15, 16]]); busy(false);
+      await bot('Claro! Na sexta (4/12) tenho <b>9h</b> ou <b>15h</b>. Qual prefere?');
+      await pac('15h, por favor');
+      await calStep(() => { clearOverlays(); const el = evEls.m; const g = document.createElement('div'); g.className = 'ghost'; pos(g, 14, 15); cols[1].appendChild(g); setTimeout(() => g.style.opacity = 0, 600); el.remove(); drawEv({ ...MARINA, d: 2, s: 15, e: 16 }, true); }, 'Movendo evento...');
+      say('Evento movido: qui 14h → <b>sex 4/12, 15h–16h</b>.');
+      await bot('Remarcado! Sua limpeza agora é <b>sexta, 4/12, às 15h</b>. O horário de quinta já ficou livre para outro paciente.');
+    },
+    async () => { // Lembrete
+      day('Quinta, 3/12 · véspera');
+      say('Lembrete automático, enviado 24 h antes da consulta.');
+      await sleep(600);
+      await bot('Oi, Marina! Lembrete: amanhã, <b>sexta às 15h</b>, sua limpeza com a Dra. Ana.<br><br>Responda <b>1</b> para confirmar ou <b>2</b> para remarcar.', 'lembrete automático');
+      await pac('1');
+      await calStep(() => { const el = evEls.m; el.classList.add('confirmed'); el.querySelector('.tag').textContent = 'Confirmado'; }, 'Confirmando...');
+      say('Consulta <b>confirmada</b> pela paciente. A recepção vê isso na agenda.');
+      await bot('Confirmado! Até amanhã. Se precisar, é só chamar por aqui.');
+    },
+    async () => { // Áudio
+      day('Hoje');
+      await sleep(reduce ? 100 : 900);
+      bubble('out', '<span class="audio"><span class="play"></span><span class="wave"></span><span style="font-size:12px;color:var(--wa-meta)">0:07</span></span>');
+      say('Áudio recebido. Transcrevendo...'); busy(true, 'Transcrevendo áudio...');
+      await sleep(1100); busy(false);
+      say('Transcrição: <b>“quanto custa o clareamento e vocês aceitam convênio?”</b>');
+      await bot('O clareamento custa <b>R$ 600</b> (duas sessões). Atendemos Amil Dental e OdontoPrev; o clareamento é particular. Quer marcar uma avaliação?', 'respondendo ao áudio');
+      await pac('Quero sim, mas vejo isso semana que vem');
+      await bot('Combinado! É só me chamar quando quiser.');
+    },
+    async () => { // Cancelar
+      day('Sexta, 4/12');
+      await pac('Bom dia, vou precisar cancelar a consulta de hoje às 15h');
+      await calStep(() => { const el = evEls.m; el.classList.add('leave'); setTimeout(() => el.remove(), 400); const g = document.createElement('div'); g.className = 'ghost'; pos(g, 15, 16); cols[2].appendChild(g); setTimeout(() => g.style.opacity = 0, 900); }, 'Cancelando...');
+      say('Evento <b>cancelado</b>. Horário de sex 15h liberado.');
+      await bot('Cancelado, Marina. Quer que eu já deixe outro dia marcado?');
+      await pac('Agora não, obrigada!');
+      await bot('Tudo bem! Quando quiser remarcar, é só mandar mensagem.');
+    },
+    async () => { // Chamar a equipe
+      day('Hoje');
+      await pac('Queria conversar com alguém sobre um orçamento de implante, tenho umas dúvidas');
+      await bot('Claro! Vou chamar alguém da equipe para conversar com você sobre o orçamento. Só um instante.');
+      busy(true, 'Avisando a equipe...'); await sleep(800); busy(false);
+      bubble('sys', 'Conversa passada para a recepção');
+      say('<b>Recepção avisada</b> no portal. O assistente fica em silêncio nesta conversa.');
+      await sleep(reduce ? 100 : 1600);
+      await bot('Oi, Marina! Aqui é a Júlia, da recepção. Me conta: você já fez avaliação com a gente?', 'Júlia · equipe');
+    },
+  ];
+  function day(label) { const d = document.createElement('div'); d.className = 'day'; d.textContent = label; chat.appendChild(d); }
 
-    for (let i = index; i < conversation.length; i++) {
-      const msg = conversation[i];
-      const isBot = msg.type === 'bot';
-
-      if (isBot) {
-        addTyping();
-        await addMessage(msg, 1100);
-      } else {
-        await addMessage(msg, 600);
-      }
-
-      // Pause between messages
-      await new Promise(r => setTimeout(r, 500));
-    }
-
-    index = conversation.length;
-    running = false;
-
-    // Restart after delay
-    setTimeout(() => {
-      chatBody.innerHTML = '';
-      index = 0;
-      playConversation();
-    }, 4000);
+  const chips = [...document.querySelectorAll('.chip')];
+  async function play(i) {
+    const my = ++run; current = i;
+    chips.forEach((c, j) => { c.setAttribute('aria-pressed', j === i); c.querySelector('.prog').style.width = j < i ? '100%' : '0'; });
+    chat.innerHTML = ''; clearOverlays(); resetCal(before[i]); busy(false); say('Agenda da clínica, atualizada pelo assistente em tempo real.');
+    try {
+      await scenes[i]();
+      chips[i].querySelector('.prog').style.width = '100%';
+      await sleep(reduce ? 2500 : 3200);
+      if (my === run) play((i + 1) % scenes.length);
+    } catch (e) { if (e !== 'x') throw e; }
   }
+  chips.forEach((c, i) => c.addEventListener('click', () => { paused = false; setPause(); play(i); }));
+  const pauseBtn = $('#pause');
+  function setPause() { pauseBtn.textContent = paused ? '▶ Continuar' : '❚❚ Pausar'; pauseBtn.setAttribute('aria-pressed', paused); }
+  pauseBtn.addEventListener('click', () => { paused = !paused; setPause(); });
 
-  function init() {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !running && index === 0) {
-          playConversation();
-        }
-      });
-    }, { threshold: 0.3 });
+  // Pausa quando a demo sai da tela
+  let visible = true;
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe($('#demo'));
 
-    observer.observe(chatBody);
-  }
+  resetCal(null);
+  play(0);
 
-  return { init };
+  // Menu Entrar
+  const lb = $('#login-btn'), lm = $('#login-menu');
+  lb.addEventListener('click', e => { e.stopPropagation(); lm.hidden = !lm.hidden; lb.setAttribute('aria-expanded', !lm.hidden); });
+  document.addEventListener('click', e => { if (!lm.contains(e.target)) { lm.hidden = true; lb.setAttribute('aria-expanded', 'false'); } });
+
+  // Formulário (prévia)
+  $('#form').addEventListener('submit', e => {
+    e.preventDefault();
+    const m = $('#form-msg'); m.hidden = false;
+    const v = id => $(id).value.trim();
+    if (!v('#f-nome') || !v('#f-whats')) { m.style.color = 'var(--warn)'; m.textContent = 'Preencha seu nome e WhatsApp.'; return; }
+    const body = `Nome: ${v('#f-nome')}\nClínica: ${v('#f-clinica')}\nWhatsApp: ${v('#f-whats')}\nAgenda hoje: ${v('#f-agenda')}\n\n${v('#f-msg')}`;
+    location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Demonstração Agiliz - ' + (v('#f-clinica') || v('#f-nome'))) + '&body=' + encodeURIComponent(body);
+    m.style.color = 'var(--text-2)';
+    m.innerHTML = 'Abrimos o seu e-mail com o pedido pronto. Se não abriu, escreva para <b>' + CONTACT_EMAIL + '</b>.';
+  });
 })();
-
-// ── CONTACT FORM ─────────────────────────────────────────────
-const ContactForm = (() => {
-  const form     = $('#contact-form');
-  const feedback = $('#form-feedback');
-  const submitBtn = $('#form-submit');
-  const btnText   = $('#btn-text');
-
-  function validate(data) {
-    const errors = [];
-    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!data.nome.trim())    errors.push({ id: 'nome', msg: 'Nome é obrigatório.' });
-    if (!emailRx.test(data.email)) errors.push({ id: 'email', msg: 'E-mail inválido.' });
-    if (!data.mensagem.trim()) errors.push({ id: 'mensagem', msg: 'Mensagem é obrigatória.' });
-
-    return errors;
-  }
-
-  function clearState() {
-    $$('.form-input').forEach(i => { i.classList.remove('is-error', 'is-success'); });
-    feedback.className = 'form-feedback';
-    feedback.textContent = '';
-  }
-
-  function setLoading(loading) {
-    submitBtn.disabled = loading;
-    btnText.textContent = loading ? 'Enviando...' : 'Enviar Mensagem';
-  }
-
-  function showFeedback(type, msg) {
-    feedback.className = `form-feedback ${type}`;
-    feedback.textContent = msg;
-    feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  function init() {
-    if (!form) return;
-
-    // Live validation
-    $$('.form-input[required]').forEach(input => {
-      input.addEventListener('blur', () => {
-        if (input.value.trim()) {
-          input.classList.remove('is-error');
-          input.classList.add('is-success');
-        } else {
-          input.classList.add('is-error');
-          input.classList.remove('is-success');
-        }
-      });
-    });
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      clearState();
-
-      const data = {
-        nome:     $('#nome').value,
-        email:    $('#email').value,
-        empresa:  $('#empresa').value,
-        mensagem: $('#mensagem').value,
-      };
-
-      const errors = validate(data);
-
-      if (errors.length) {
-        errors.forEach(err => {
-          const input = $(`#${err.id}`);
-          if (input) input.classList.add('is-error');
-        });
-        showFeedback('error', errors[0].msg);
-        $(`#${errors[0].id}`)?.focus();
-        return;
-      }
-
-      setLoading(true);
-
-      // Simulate async send (replace with real fetch if needed)
-      await new Promise(r => setTimeout(r, 1500));
-
-      setLoading(false);
-      form.reset();
-      $$('.form-input').forEach(i => i.classList.remove('is-success', 'is-error'));
-      showFeedback('success', '✅ Mensagem enviada! Retornaremos em até 2 horas úteis.');
-    });
-  }
-
-  return { init };
-})();
-
-// ── SMOOTH SCROLL FOR NAV LINKS ──────────────────────────────
-const SmoothScroll = (() => {
-  function init() {
-    $$('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        if (href === '#') return;
-        const target = document.querySelector(href);
-        if (!target) return;
-        e.preventDefault();
-
-        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 72;
-        const top  = target.getBoundingClientRect().top + window.scrollY - navH;
-
-        window.scrollTo({ top, behavior: 'smooth' });
-        // Update focus for accessibility
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-      });
-    });
-  }
-
-  return { init };
-})();
-
-// ── ACTIVE NAV LINK ──────────────────────────────────────────
-const ActiveNav = (() => {
-  const links = $$('.nav__link');
-  const sections = $$('section[id]');
-
-  function update() {
-    const scrollY = window.scrollY + 120;
-    let current = '';
-
-    sections.forEach(sec => {
-      if (sec.offsetTop <= scrollY) current = sec.id;
-    });
-
-    links.forEach(link => {
-      const href = link.getAttribute('href').slice(1);
-      link.style.color = href === current ? 'var(--clr-electric)' : '';
-    });
-  }
-
-  function init() {
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  }
-
-  return { init };
-})();
-
-// ── FOOTER YEAR ──────────────────────────────────────────────
-function setFooterYear() {
-  const el = $('#footer-year');
-  if (el) el.textContent = new Date().getFullYear();
-}
-
-// ── INIT ALL ─────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  ThemeManager.init();
-  MenuManager.init();
-  HeaderScroll.init();
-  Particles.init();
-  CounterAnimation.init();
-  ScrollReveal.init();
-  ChatDemo.init();
-  ContactForm.init();
-  SmoothScroll.init();
-  ActiveNav.init();
-  setFooterYear();
-});

@@ -1,496 +1,356 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
-  <!-- ── ESSENCIAIS ─────────────────────────────── -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>agiliz.IA – Inteligência que Acelera</title>
-  <meta name="description" content="A agilizIA automatiza agendamentos via chatbots inteligentes e humanizados. Reduza custos em até 60%, atenda 24/7 e encante seus clientes. Fale conosco: ia.agiliza@gmail.com" />
-  <meta name="keywords" content="chatbot inteligente, agendamento automatizado, inteligência artificial, automação de atendimento, IA para empresas, WhatsApp bot, atendimento 24h, agiliz.IA" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>agiliz.IA – Assistente de IA no WhatsApp para clínicas</title>
+  <meta name="description" content="O assistente da agiliz.IA atende seus pacientes no WhatsApp e marca, remarca e cancela consultas direto na agenda da clínica. Planos a partir de R$ 149/mês." />
+  <meta name="keywords" content="agendamento pelo WhatsApp, bot para clínica, assistente virtual clínica, Google Agenda, chatbot odontologia, secretária virtual, agiliz.IA" />
   <meta name="author" content="agiliz.IA" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.agiliz.ia.br/" />
-  <meta name="theme-color" content="#00d4ff" />
+  <meta name="theme-color" content="#0C0E14" />
 
-  <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ── -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="agilizIA" />
-  <meta property="og:title" content="agiliz.IA – Inteligência que Acelera" />
-  <meta property="og:description" content="Automatize agendamentos com chatbots humanizados. Atendimento 24/7, redução de custos de até 60% e 97% de satisfação dos clientes." />
+  <meta property="og:site_name" content="agiliz.IA" />
+  <meta property="og:title" content="agiliz.IA – Sua clínica agenda pelo WhatsApp enquanto você atende" />
+  <meta property="og:description" content="Assistente de IA que conversa com seus pacientes e marca, remarca e cancela consultas direto na Google Agenda." />
   <meta property="og:url" content="https://www.agiliz.ia.br/" />
   <meta property="og:image" content="https://www.agiliz.ia.br/thumbnail.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="agiliz.IA - Automação Inteligente - Agilidade da IA gerando produtividade e economia Transforme seu negócio com chatbots que atendem, entendem e encantam — enquanto você foca no que realmente importa." />
+  <meta property="og:image:alt" content="agiliz.IA – assistente de IA no WhatsApp para clínicas" />
   <meta property="og:locale" content="pt_BR" />
-
-  <!-- ── TWITTER / X CARD ───────────────────────── -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="agiliz.IA – Inteligência que Acelera" />
-  <meta name="twitter:description" content="Automatize agendamentos com chatbots humanizados. Atendimento 24/7 e até 60% de redução de custos." />
+  <meta name="twitter:title" content="agiliz.IA – Sua clínica agenda pelo WhatsApp enquanto você atende" />
+  <meta name="twitter:description" content="Assistente de IA que marca, remarca e cancela consultas direto na Google Agenda." />
   <meta name="twitter:image" content="https://www.agiliz.ia.br/thumbnail.png" />
-  <meta name="twitter:image:alt" content="agiliz.IA - Automação Inteligente - Agilidade da IA gerando produtividade e economia Transforme seu negócio com chatbots que atendem, entendem e encantam — enquanto você foca no que realmente importa." />
 
-  <!-- ── FAVICON ────────────────────────────────── -->
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-  <!-- ── FONT ───────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
-
-  <!-- HEADER -->
-  <header class="site-header" role="banner">
-    <nav class="nav container" aria-label="Navegação principal">
-      <a href="#hero" class="nav__logo" aria-label="agiliz.IA – Página inicial">
-        <span class="logo-text">agiliz.<span class="logo-accent">IA</span></span>
-        <span class="logo-dot" aria-hidden="true"></span>
-      </a>
-
-      <ul class="nav__links" role="list">
-        <li><a href="#sobre" class="nav__link">Sobre</a></li>
-        <li><a href="#produto" class="nav__link">Produto</a></li>
-        <li><a href="#beneficios" class="nav__link">Benefícios</a></li>
-        <li><a href="#contato" class="nav__link">Contato</a></li>
-      </ul>
-
-      <div class="nav__actions">
-        <button id="theme-toggle" class="theme-btn" aria-label="Alternar para modo claro" aria-pressed="false" title="Alternar tema">
-          <span class="theme-btn__icon theme-btn__icon--sun" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-              <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-          </span>
-          <span class="theme-btn__icon theme-btn__icon--moon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
-            </svg>
-          </span>
-        </button>
-
-        <button id="menu-toggle" class="menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
-          <span class="menu-btn__bar"></span>
-          <span class="menu-btn__bar"></span>
-          <span class="menu-btn__bar"></span>
-        </button>
-      </div>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio"><span class="dot"></span><span>agiliz<b>.IA</b></span></a>
+    <nav class="links" aria-label="Seções">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#agentes">Agentes</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
     </nav>
-
-    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Menu de navegação" aria-hidden="true">
-      <ul class="mobile-menu__links" role="list">
-        <li><a href="#sobre" class="mobile-menu__link">Sobre</a></li>
-        <li><a href="#produto" class="mobile-menu__link">Produto</a></li>
-        <li><a href="#beneficios" class="mobile-menu__link">Benefícios</a></li>
-        <li><a href="#contato" class="mobile-menu__link">Contato</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <main id="main-content">
-
-    <!-- HERO -->
-    <section id="hero" class="hero" aria-labelledby="hero-heading">
-      <div class="hero__bg" aria-hidden="true">
-        <div class="hero__grid"></div>
-        <div class="hero__orb hero__orb--1"></div>
-        <div class="hero__orb hero__orb--2"></div>
-        <div class="hero__orb hero__orb--3"></div>
-        <div class="hero__particles" id="particles"></div>
-      </div>
-
-      <div class="container hero__content">
-        <div class="hero__badge">
-          <span class="badge-pulse" aria-hidden="true"></span>
-          Automação Inteligente
-        </div>
-
-        <h1 id="hero-heading" class="hero__heading">
-          Agilidade da IA<br />
-          <span class="hero__heading--gradient">gerando produtividade</span><br />
-          e economia
-        </h1>
-
-        <p class="hero__subtitle">
-          Transforme seu negócio com chatbots que atendem, entendem e encantam —
-          enquanto você foca no que realmente importa.
-        </p>
-
-        <div class="hero__actions">
-          <a href="#produto" class="btn btn--primary" aria-label="Ver como funciona o produto">
-            <span>Como Funciona</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="#contato" class="btn btn--ghost">Fale Conosco</a>
-        </div>
-
-        <div class="hero__stats" aria-label="Estatísticas de desempenho">
-          <div class="stat">
-            <span class="stat__number" data-target="97">0</span><span class="stat__unit">%</span>
-            <span class="stat__label">Satisfação</span>
-          </div>
-          <div class="stat__divider" aria-hidden="true"></div>
-          <div class="stat">
-            <span class="stat__number" data-target="3">0</span><span class="stat__unit">x</span>
-            <span class="stat__label">Mais Rápido</span>
-          </div>
-          <div class="stat__divider" aria-hidden="true"></div>
-          <div class="stat">
-            <span class="stat__number" data-target="60">0</span><span class="stat__unit">%</span>
-            <span class="stat__label">Menos Custos</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero__scroll-cue" aria-hidden="true"><span></span></div>
-    </section>
-
-    <!-- SOBRE -->
-    <section id="sobre" class="sobre section" aria-labelledby="sobre-heading">
-      <div class="container">
-        <div class="section-tag">Quem Somos</div>
-        <h2 id="sobre-heading" class="section-heading">
-          Onde a <span class="text-gradient">inteligência artificial</span><br />
-          encontra o atendimento humano
-        </h2>
-
-        <div class="sobre__grid">
-          <div class="sobre__text">
-            <p class="lead">
-              A <strong>agiliz.IA</strong> nasceu da crença de que tecnologia e humanidade não são opostos —
-              são parceiros. Desenvolvemos soluções de automação que preservam a essência do contato humano.
-            </p>
-            <p>
-              Nossa plataforma integra modelos de linguagem avançados a fluxos de negócio reais,
-              criando experiências de atendimento que surpreendem pela naturalidade e encantam pela eficiência.
-            </p>
-          </div>
-
-          <div class="sobre__cards" aria-label="Diferenciais da agiliz.IA">
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/>
-                  <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                  <line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
-                </svg>
-              </div>
-              <h3 class="feature-card__title">IA Humanizada</h3>
-              <p class="feature-card__desc">Conversas naturais que criam conexão genuína com seus clientes.</p>
-            </article>
-
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-                </svg>
-              </div>
-              <h3 class="feature-card__title">Multiplataforma</h3>
-              <p class="feature-card__desc">WhatsApp, Instagram, site e muito mais — tudo integrado.</p>
-            </article>
-
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg>
-              </div>
-              <h3 class="feature-card__title">Tempo Real</h3>
-              <p class="feature-card__desc">Atendimento 24/7 com respostas instantâneas e precisas.</p>
-            </article>
-
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-              </div>
-              <h3 class="feature-card__title">Personalizado</h3>
-              <p class="feature-card__desc">Cada solução moldada às necessidades únicas do seu negócio.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUTO -->
-    <section id="produto" class="produto section" aria-labelledby="produto-heading">
-      <div class="produto__bg" aria-hidden="true">
-        <div class="produto__glow"></div>
-      </div>
-      <div class="container">
-        <div class="section-tag">Produto Principal</div>
-        <h2 id="produto-heading" class="section-heading">
-          Agendamentos Automatizados<br />
-          via <span class="text-gradient">Chatbots Inteligentes</span>
-        </h2>
-        <p class="section-subtitle">
-          Seu cliente agenda, cancela e reagenda em segundos — pelo canal que preferir,
-          na linguagem que fala, sem filas e sem espera.
-        </p>
-
-        <!-- Chat Demo -->
-        <div class="chat-demo" aria-label="Demonstração de conversa com chatbot">
-          <div class="chat-demo__header" aria-hidden="true">
-            <div class="chat-demo__dots"><span></span><span></span><span></span></div>
-            <span class="chat-demo__title">agiliz.IA Chat</span>
-            <span class="chat-demo__status">● Online</span>
-          </div>
-          <div class="chat-demo__body" id="chat-body" role="log" aria-live="polite" aria-label="Conversa demonstrativa"></div>
-          <div class="chat-demo__footer" aria-hidden="true">
-            <div class="chat-demo__input-bar">
-              <span>Digite sua mensagem...</span>
-              <button class="chat-demo__send" tabindex="-1">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Flow -->
-        <div class="flow" aria-label="Como funciona o agendamento automatizado">
-          <article class="flow__step">
-            <div class="flow__number" aria-hidden="true">01</div>
-            <h3 class="flow__title">Cliente Inicia</h3>
-            <p class="flow__desc">O cliente envia uma mensagem no canal de preferência: WhatsApp, site ou app.</p>
-          </article>
-          <div class="flow__arrow" aria-hidden="true">→</div>
-          <article class="flow__step">
-            <div class="flow__number" aria-hidden="true">02</div>
-            <h3 class="flow__title">IA Entende</h3>
-            <p class="flow__desc">Nosso chatbot compreende a intenção e verifica disponibilidade em tempo real.</p>
-          </article>
-          <div class="flow__arrow" aria-hidden="true">→</div>
-          <article class="flow__step">
-            <div class="flow__number" aria-hidden="true">03</div>
-            <h3 class="flow__title">Agendado!</h3>
-            <p class="flow__desc">Confirmação automática, lembrete e opções de reagendamento sem esforço.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- BENEFÍCIOS -->
-    <section id="beneficios" class="beneficios section" aria-labelledby="beneficios-heading">
-      <div class="container">
-        <div class="section-tag">Por Que Escolher</div>
-        <h2 id="beneficios-heading" class="section-heading">
-          Resultados que você<br />
-          <span class="text-gradient">sente desde o primeiro dia</span>
-        </h2>
-
-        <div class="beneficios__grid">
-          <article class="benefit-card benefit-card--highlight">
-            <div class="benefit-card__glow" aria-hidden="true"></div>
-            <div class="benefit-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v2m0 8v2M9.5 9.5A2.5 2.5 0 0 1 12 8h.5a2.5 2.5 0 0 1 0 5H12a2.5 2.5 0 0 0 0 5h.5a2.5 2.5 0 0 0 2.5-2.5"/>
-              </svg>
-            </div>
-            <h3 class="benefit-card__title">Economia Real</h3>
-            <p class="benefit-card__desc">Reduza custos operacionais com atendimento automatizado que nunca para.</p>
-            <span class="benefit-card__metric">Até 60% menos custos</span>
-          </article>
-
-          <article class="benefit-card">
-            <div class="benefit-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-            </div>
-            <h3 class="benefit-card__title">Velocidade</h3>
-            <p class="benefit-card__desc">Tempo de resposta de milissegundos. Clientes nunca mais esperam.</p>
-            <span class="benefit-card__metric">&lt;1s de resposta</span>
-          </article>
-
-          <article class="benefit-card">
-            <div class="benefit-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </div>
-            <h3 class="benefit-card__title">Humanização</h3>
-            <p class="benefit-card__desc">Fluxos com linguagem natural e empatia. O cliente percebe cuidado, não robô.</p>
-            <span class="benefit-card__metric">97% satisfação</span>
-          </article>
-
-          <article class="benefit-card">
-            <div class="benefit-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                <polyline points="17 6 23 6 23 12"/>
-              </svg>
-            </div>
-            <h3 class="benefit-card__title">Escalabilidade</h3>
-            <p class="benefit-card__desc">Atenda 1 ou 10.000 clientes simultaneamente com a mesma qualidade.</p>
-            <span class="benefit-card__metric">∞ simultâneos</span>
-          </article>
-
-          <article class="benefit-card">
-            <div class="benefit-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-              </svg>
-            </div>
-            <h3 class="benefit-card__title">Segurança</h3>
-            <p class="benefit-card__desc">Dados criptografados, conformidade com LGPD e infra de nível empresarial.</p>
-            <span class="benefit-card__metric">100% LGPD</span>
-          </article>
-
-          <article class="benefit-card">
-            <div class="benefit-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <line x1="18" y1="20" x2="18" y2="10"/>
-                <line x1="12" y1="20" x2="12" y2="4"/>
-                <line x1="6"  y1="20" x2="6"  y2="14"/>
-              </svg>
-            </div>
-            <h3 class="benefit-card__title">Inteligência</h3>
-            <p class="benefit-card__desc">Dashboards em tempo real com insights sobre comportamento e oportunidades.</p>
-            <span class="benefit-card__metric">Real-time analytics</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section section" aria-labelledby="cta-heading">
-      <div class="cta-section__bg" aria-hidden="true"><div class="cta-section__orb"></div></div>
-      <div class="container cta-section__content">
-        <h2 id="cta-heading" class="cta-section__heading">Pronto para automatizar<br />com inteligência?</h2>
-        <p class="cta-section__sub">Comece hoje e veja a diferença da IA que realmente entende seu negócio.</p>
-        <a href="#contato" class="btn btn--primary btn--large">
-          <span>Começar Agora</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato" class="contato section" aria-labelledby="contato-heading">
-      <div class="container">
-        <div class="section-tag">Contato</div>
-        <h2 id="contato-heading" class="section-heading">Vamos <span class="text-gradient">conversar?</span></h2>
-
-        <div class="contato__grid">
-          <div class="contato__info">
-            <p class="lead">
-              Tem dúvidas ou quer uma demonstração personalizada?
-              Nossa equipe responde rapidamente — afinal, agilidade é o que fazemos.
-            </p>
-
-            <div class="contato__channels">
-              <a href="/cdn-cgi/l/email-protection#2148400f4046484d485b4061464c40484d0f424e4c" class="contact-item" aria-label="Enviar e-mail para ia.agiliza@gmail.com">
-                <div class="contact-item__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                  </svg>
-                </div>
-                <div class="contact-item__text">
-                  <span class="contact-item__label">E-mail</span>
-                  <span class="contact-item__value"><span class="__cf_email__" data-cfemail="86efe7a8e7e1efeaeffce7c6e1ebe7efeaa8e5e9eb">ia.agiliza@gmail.com</span></span>
-                </div>
-              </a>
-
-              <div class="contact-item">
-                <div class="contact-item__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </div>
-                <div class="contact-item__text">
-                  <span class="contact-item__label">Resposta</span>
-                  <span class="contact-item__value">Em até 2 horas úteis</span>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <div class="contact-item__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                  </svg>
-                </div>
-                <div class="contact-item__text">
-                  <span class="contact-item__label">Atendimento</span>
-                  <span class="contact-item__value">Seg – Sex, 9h às 18h</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="contato__form-wrap">
-            <form class="contact-form" id="contact-form" novalidate aria-label="Formulário de contato">
-              <div class="form-group">
-                <label for="nome" class="form-label">Nome completo</label>
-                <input type="text" id="nome" name="nome" class="form-input" placeholder="Seu nome" autocomplete="name" required aria-required="true" />
-              </div>
-              <div class="form-group">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" autocomplete="email" required aria-required="true" />
-              </div>
-              <div class="form-group">
-                <label for="empresa" class="form-label">Empresa <span class="form-label--opt">(opcional)</span></label>
-                <input type="text" id="empresa" name="empresa" class="form-input" placeholder="Nome da empresa" autocomplete="organization" />
-              </div>
-              <div class="form-group">
-                <label for="mensagem" class="form-label">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" class="form-input form-textarea" placeholder="Como podemos ajudar?" rows="4" required aria-required="true"></textarea>
-              </div>
-              <button type="submit" class="btn btn--primary btn--full" id="form-submit">
-                <span id="btn-text">Enviar Mensagem</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-              </button>
-              <div id="form-feedback" class="form-feedback" role="alert" aria-live="assertive"></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container site-footer__inner">
-      <div class="site-footer__brand">
-        <span class="logo-text">agiliz.<span class="logo-accent">IA</span></span>
-        <p>Inteligência que acelera.</p>
-      </div>
-      <nav class="site-footer__nav" aria-label="Navegação do rodapé">
-        <a href="#sobre">Sobre</a>
-        <a href="#produto">Produto</a>
-        <a href="#beneficios">Benefícios</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <div class="site-footer__legal">
-        <p>© <span id="footer-year"></span> agiliz.IA. Todos os direitos reservados.</p>
-        <a href="mailto:ia.agiliza@gmail.com" class="footer-email">ia.agiliza@gmail.com</a>
+    <div class="actions">
+      <button class="btn btn-ghost btn-sm" id="login-btn" aria-expanded="false" aria-controls="login-menu">Entrar</button>
+      <a class="btn btn-primary btn-sm" href="#contato">Quero uma demonstração</a>
+      <div class="login-menu" id="login-menu" hidden>
+        <a href="#entrar-cliente">Sou cliente<small>Acompanhar conversas, agenda e o bot da minha clínica</small></a>
+        <a href="#entrar-equipe">Sou da equipe Agiliz<small>Painel de criação e gestão dos bots</small></a>
       </div>
     </div>
-  </footer>
+  </div>
+</header>
 
-  <script src="script.js"></script>
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-head">
+        <div>
+          <span class="eyebrow">Assistente de IA para clínicas</span>
+          <h1>Sua clínica agenda pelo WhatsApp <em>enquanto você atende.</em></h1>
+        </div>
+        <div>
+          <p class="lead">O assistente da Agiliz conversa com seus pacientes, encontra o horário livre e marca, remarca ou cancela direto na sua Google Agenda. Quando o assunto pede uma pessoa, ele chama a sua equipe.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#contato">Quero uma demonstração</a>
+            <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage" id="demo" aria-label="Demonstração: conversa no WhatsApp e agenda da clínica lado a lado">
+        <div class="stage-bar">
+          <span class="label">Veja ao vivo</span>
+          <div class="chips" role="group" aria-label="Escolha uma situação">
+            <button class="chip" data-scene="0" aria-pressed="true">Marcar<span class="prog"></span></button>
+            <button class="chip" data-scene="1" aria-pressed="false">Remarcar<span class="prog"></span></button>
+            <button class="chip" data-scene="2" aria-pressed="false">Lembrete<span class="prog"></span></button>
+            <button class="chip" data-scene="3" aria-pressed="false">Mensagem de voz<span class="prog"></span></button>
+            <button class="chip" data-scene="4" aria-pressed="false">Cancelar<span class="prog"></span></button>
+            <button class="chip" data-scene="5" aria-pressed="false">Chamar a equipe<span class="prog"></span></button>
+          </div>
+          <button class="pause" id="pause" aria-pressed="false">❚❚ Pausar</button>
+        </div>
+
+        <div class="panes">
+          <div class="phone">
+            <div class="wa">
+              <div class="wa-head">
+                <div class="wa-ava">CS</div>
+                <div><b>Clínica Sorriso</b><small id="wa-status">online</small></div>
+              </div>
+              <div class="wa-body" id="chat" aria-live="polite"></div>
+              <div class="wa-input"><span>Mensagem</span><i></i></div>
+            </div>
+          </div>
+
+          <div class="cal">
+            <div class="cal-head">
+              <h3>Dra. Ana Lima</h3>
+              <span class="src">Google Agenda · semana de 30 nov</span>
+              <span class="sync" id="sync"><i></i><span id="sync-text">Sincronizado</span></span>
+            </div>
+            <div class="grid" id="grid">
+              <div class="dh"></div>
+              <div class="dh today"><small>Qua</small><b>2</b></div>
+              <div class="dh"><small>Qui</small><b>3</b></div>
+              <div class="dh"><small>Sex</small><b>4</b></div>
+              <div class="hours" id="hours"></div>
+              <div class="col" data-day="0"></div>
+              <div class="col" data-day="1"></div>
+              <div class="col" data-day="2"></div>
+            </div>
+            <div class="cal-log" id="log">Agenda da clínica, atualizada pelo assistente em tempo real.</div>
+          </div>
+        </div>
+        <p class="stage-foot">Simulação com dados de exemplo. Na clínica de verdade, a conversa acontece no WhatsApp do paciente e a agenda é a da própria clínica.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="como-funciona">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Como funciona</span>
+        <h2>Do primeiro contato ao assistente atendendo</h2>
+        <p>A gente configura tudo com você. Sua equipe não precisa instalar nada nem aprender um sistema novo.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="n">Passo 1</span>
+          <h3>Conhecemos sua clínica</h3>
+          <p>Um questionário rápido sobre serviços, horários, profissionais e o jeito de falar com os pacientes.</p>
+          <span class="when">Uma conversa</span>
+        </div>
+        <div class="step">
+          <span class="n">Passo 2</span>
+          <h3>Conectamos o WhatsApp e a agenda</h3>
+          <p>Você lê um código com o celular do número da clínica e compartilha a Google Agenda com o assistente.</p>
+          <span class="when">Poucos minutos</span>
+        </div>
+        <div class="step">
+          <span class="n">Passo 3</span>
+          <h3>O assistente começa a atender</h3>
+          <p>Ele responde de dia, de noite e no fim de semana. Você acompanha tudo pelo portal, no computador ou no celular.</p>
+          <span class="when">Todos os dias, 24 h</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="agentes">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Dois tipos de agente</span>
+        <h2>Escolha onde o assistente marca as consultas</h2>
+        <p>Os dois conversam pelo WhatsApp. A diferença é a agenda que eles usam.</p>
+      </div>
+      <div class="agents">
+        <article class="agent featured">
+          <span class="status ready">Pronto para usar</span>
+          <div class="combo"><span>WhatsApp</span><em>+</em><span>Google Agenda</span></div>
+          <h3>Agente de Agenda</h3>
+          <p>Para clínicas que organizam os horários na Google Agenda. Começa a funcionar no mesmo dia.</p>
+          <ul>
+            <li>Consulta horários livres de cada profissional</li>
+            <li>Marca, remarca, confirma e cancela</li>
+            <li>Preço fechado por plano</li>
+          </ul>
+          <a class="btn btn-primary" href="#planos">Ver planos</a>
+        </article>
+        <article class="agent">
+          <span class="status ask">Sob análise</span>
+          <div class="combo"><span>WhatsApp</span><em>+</em><span>Sistema da clínica</span></div>
+          <h3>Agente Integrado</h3>
+          <p>Para clínicas que já usam um sistema de gestão. O assistente marca direto nele, sem passar pela Google Agenda.</p>
+          <ul>
+            <li>Ligado ao sistema que a clínica já usa</li>
+            <li>Avaliamos cada sistema antes de fechar</li>
+            <li>Preço definido depois da análise</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contato">Pedir uma análise</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="recursos">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Recursos</span>
+        <h2>O que vem junto e o que você pode somar</h2>
+        <p>Todo assistente já sai com o essencial. Os recursos opcionais você liga quando quiser.</p>
+      </div>
+
+      <div class="res-group">
+        <h3>Já incluído <small>em todos os planos</small></h3>
+        <div class="res">
+          <div class="card base">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
+            <h4>Atendimento no WhatsApp</h4>
+            <p>Conversa natural, com as informações da sua clínica: serviços, preços, endereço e convênios.</p>
+            <span class="foot">No número da própria clínica</span>
+          </div>
+          <div class="card base">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M9 15l2 2 4-4"/></svg></span>
+            <h4>Agendamento</h4>
+            <p>Marca, remarca, confirma e cancela consultas, sempre olhando os horários livres de verdade.</p>
+            <span class="foot">Google Agenda ou sistema da clínica</span>
+          </div>
+          <div class="card base">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M17 8h4M19 6v4"/></svg></span>
+            <h4>Passar para a equipe</h4>
+            <p>Quando o paciente pede ou o assunto é delicado, o assistente pausa e chama alguém da clínica.</p>
+            <span class="foot">A equipe responde pelo portal</span>
+          </div>
+          <div class="card base">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M7 13l3-3 2 2 5-5"/></svg></span>
+            <h4>Portal da clínica</h4>
+            <p>Veja as conversas, as consultas marcadas e o consumo do mês, no computador ou no celular.</p>
+            <span class="foot">Acesso para a sua equipe</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="res-group">
+        <h3>Opcionais <small>ligue quando precisar</small></h3>
+        <div class="res">
+          <div class="card">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span>
+            <h4>Lembrete na véspera</h4>
+            <p>Mensagem automática 24 h antes da consulta, com opção de confirmar ou remarcar. Menos faltas na agenda.</p>
+            <span class="foot">Incluído a partir do Profissional</span>
+          </div>
+          <div class="card">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg></span>
+            <h4>Entende áudios</h4>
+            <p>O paciente manda mensagem de voz e o assistente entende e responde normalmente.</p>
+            <span class="foot">Incluído a partir do Profissional</span>
+          </div>
+          <div class="card">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <h4>E-mail de confirmação</h4>
+            <p>Envia confirmações e resumos por e-mail para o paciente ou para a clínica.</p>
+            <span class="foot">Incluído a partir do Profissional</span>
+          </div>
+          <div class="card">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h4>WhatsApp oficial da Meta</h4>
+            <p>Canal oficial, sem risco de bloqueio do número. A ativação depende da verificação da empresa na Meta.</p>
+            <span class="foot">Sob pedido</span>
+          </div>
+          <div class="card soon">
+            <span class="pill">Em breve</span>
+            <h4>Sinal por Pix</h4>
+            <p>Cobrança de sinal no momento de marcar, para reduzir faltas em procedimentos longos.</p>
+            <span class="foot">Em desenvolvimento</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="planos">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Planos</span>
+        <h2>Preço fechado, sem surpresa no fim do mês</h2>
+        <p>Para o Agente de Agenda. Cada plano tem uma franquia de conversas; se passar, cobramos só o excedente.</p>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <h3>Essencial</h3>
+          <div class="price">R$ 149<small> /mês</small></div>
+          <div class="meta"><span><b>1</b> profissional</span><span><b>150</b> conversas por mês</span><span>Excedente: <b>R$ 0,80</b> por conversa</span></div>
+          <ul><li>Atendimento e agendamento</li><li>Passar para a equipe</li><li>Opcionais à parte: lembrete e áudio (R$ 20 cada), e-mail (R$ 10)</li></ul>
+        </article>
+        <article class="plan hl">
+          <h3>Profissional <small>Mais escolhido</small></h3>
+          <div class="price">R$ 249<small> /mês</small></div>
+          <div class="meta"><span>Até <b>3</b> profissionais</span><span><b>400</b> conversas por mês</span><span>Excedente: <b>R$ 0,60</b> por conversa</span></div>
+          <ul><li>Tudo do Essencial</li><li>Lembrete na véspera</li><li>Entende áudios</li><li>E-mail de confirmação</li></ul>
+        </article>
+        <article class="plan">
+          <h3>Clínica</h3>
+          <div class="price">R$ 399<small> /mês</small></div>
+          <div class="meta"><span>Profissionais <b>sem limite</b></span><span><b>1.000</b> conversas por mês</span><span>Excedente: <b>R$ 0,40</b> por conversa</span></div>
+          <ul><li>Tudo do Profissional</li><li>Para equipes grandes e volume alto</li></ul>
+        </article>
+      </div>
+      <p class="plans-note">Agente Integrado (sistema da clínica) e WhatsApp oficial: preço sob análise.</p>
+    </div>
+  </section>
+
+  <section class="band" id="duvidas">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Dúvidas</span>
+        <h2>Perguntas que as clínicas fazem</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>Preciso de um número novo de WhatsApp?</summary><p>Recomendamos um número só para o assistente, de preferência novo. Ele é conectado lendo um código com o celular, igual ao WhatsApp Web.</p></details>
+        <details><summary>E se o paciente quiser falar com uma pessoa?</summary><p>O assistente percebe e passa a conversa para a sua equipe, que responde pelo portal. Enquanto isso, ele fica em silêncio naquela conversa.</p></details>
+        <details><summary>Ele pode marcar em horário errado?</summary><p>Não. Antes de oferecer um horário, ele consulta a agenda daquele profissional. Só oferece o que está livre e confirma com o paciente antes de marcar.</p></details>
+        <details><summary>Minha clínica não usa Google Agenda. Funciona?</summary><p>Para isso existe o Agente Integrado, que marca direto no sistema da clínica. Avaliamos o seu sistema e passamos o preço depois da análise.</p></details>
+        <details><summary>O número pode ser bloqueado?</summary><p>Na conexão comum existe esse risco, como em qualquer automação de WhatsApp. Quem prefere evitar pode usar o WhatsApp oficial da Meta, que não tem esse risco.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="contato">
+    <div class="wrap contact">
+      <div>
+        <div class="sec-head" style="margin-bottom:0">
+          <span class="eyebrow">Contato</span>
+          <h2>Veja o assistente com a agenda da sua clínica</h2>
+          <p>Montamos uma demonstração com os seus serviços e horários. Respondemos em dias úteis, das 9h às 18h.</p>
+        </div>
+        <div class="ways">
+          <div class="way"><span class="ico wa-ava" style="width:40px;height:40px">@</span><div><small>E-mail</small><b>ia.agiliza@gmail.com</b></div></div>
+        </div>
+      </div>
+      <form id="form" novalidate>
+        <div class="form-row">
+          <label for="f-nome">Seu nome<input id="f-nome" name="nome" autocomplete="name" required></label>
+          <label for="f-clinica">Clínica<input id="f-clinica" name="clinica" autocomplete="organization"></label>
+        </div>
+        <div class="form-row">
+          <label for="f-whats">WhatsApp<input id="f-whats" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" required></label>
+          <label for="f-agenda">Onde fica a agenda hoje?
+            <select id="f-agenda" name="agenda"><option>Google Agenda</option><option>Sistema da clínica</option><option>Papel ou planilha</option><option>Outro</option></select>
+          </label>
+        </div>
+        <label for="f-msg">Mensagem<textarea id="f-msg" name="mensagem" rows="4" placeholder="Quantos profissionais, que tipo de atendimento..."></textarea></label>
+        <button class="btn btn-primary" type="submit">Pedir demonstração</button>
+        <p class="form-msg" id="form-msg" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#inicio"><span class="dot"></span><span>agiliz<b>.IA</b></span></a>
+    <nav aria-label="Rodapé">
+      <a href="#como-funciona">Como funciona</a><a href="#planos">Planos</a><a href="#contato">Contato</a>
+    </nav>
+    <span>© 2026 agiliz.IA</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
