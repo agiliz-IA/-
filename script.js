@@ -1,5 +1,6 @@
 (() => {
   const CONTACT_EMAIL = 'ia.agiliza@gmail.com';
+  const CONTACT_WHATSAPP = '5521965721570';
   const H0 = 8, H1 = 18, SPAN = H1 - H0;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = s => document.querySelector(s);
@@ -207,8 +208,12 @@
     const v = id => $(id).value.trim();
     if (!v('#f-nome') || !v('#f-whats')) { m.style.color = 'var(--warn)'; m.textContent = 'Preencha seu nome e WhatsApp.'; return; }
     const body = `Nome: ${v('#f-nome')}\nClínica: ${v('#f-clinica')}\nWhatsApp: ${v('#f-whats')}\nAgenda hoje: ${v('#f-agenda')}\n\n${v('#f-msg')}`;
-    location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Demonstração Agiliz - ' + (v('#f-clinica') || v('#f-nome'))) + '&body=' + encodeURIComponent(body);
+    const text = 'Olá! Quero uma demonstração da Agiliz.\n\n' + body;
+    const a = document.createElement('a');
+    a.href = 'https://wa.me/' + CONTACT_WHATSAPP + '?text=' + encodeURIComponent(text);
+    a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
     m.style.color = 'var(--text-2)';
-    m.innerHTML = 'Abrimos o seu e-mail com o pedido pronto. Se não abriu, escreva para <b>' + CONTACT_EMAIL + '</b>.';
+    m.innerHTML = 'Abrimos o WhatsApp com o seu pedido pronto, é só enviar. Se não abriu, chame no (21) 96572-1570 ou escreva para <b>' + CONTACT_EMAIL + '</b>.';
   });
 })();
